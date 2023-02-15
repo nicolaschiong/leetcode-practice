@@ -1,16 +1,16 @@
 function addToArrayForm(num: number[], k: number): number[] {
-    let numAsInt = 0;
-    for (let i = 0; i< num.length; i++){
-        numAsInt = numAsInt * 10 + num[i];
+  let i = num.length - 1;
+  let carry = k;
+  const result = [];
+
+  while (i >= 0 || carry > 0) {
+    if (i >= 0) {
+      carry += num[i];
     }
+    result.unshift(carry % 10);
+    carry = Math.floor(carry / 10);
+    i--;
+  }
 
-    let sum = numAsInt + k;
-
-    const result = [];
-    while(sum > 0){
-        result.unshift(sum % 10);
-        sum = Math.floor(sum / 10);
-    }
-
-    return result.length > 0 ? result : [0];
+  return result;
 };
